@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: tax_roll_xlsx
+    description: >
+      Raw data from Excel files provided by the city of Madison.
+      The data is in JSON format to handle schema changes over time without requiring changes to the ingestion script or DDL for this table.
+    columns:
+      - name: id
+        description: "A unique sequential ID acting as a primary key."
+      - name: data_json
+        description: "The contents of the Excel file, converted to JSON format."
+      - name: load_dttm
+        description: "The datetime this row was loaded."
