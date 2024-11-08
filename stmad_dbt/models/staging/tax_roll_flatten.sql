@@ -4,5 +4,5 @@
     )
 }}
 
-select 
-from {{ source('staging','tax_roll_xlsx')}}
+select *
+from {{ source('city_of_madison','tax_roll_xlsx')}}
