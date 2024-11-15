@@ -45,6 +45,6 @@ models:
 
     #Purpose-driven datasets (aggregated, super denormalized, etc)
     #to be used directly by external applications/APIs
-    cantthinkofaname:
+    delivery:
       +materialized: table
-      +schema: 
+      +schema: delivery

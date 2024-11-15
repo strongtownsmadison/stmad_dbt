@@ -2,8 +2,8 @@ version: 2
 
 sources:
   - name: city_of_madison
-    database: postgres  # Replace with your actual database name
-    schema: staging      # Replace with your actual schema name
+    database: postgres  
+    schema: staging      
     description: Data sourced from the city of Madison.
     tables:
       - name: tax_roll_xlsx

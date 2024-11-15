@@ -1,11 +1,11 @@
 {{
     config(
-        tags=["parcels"]
+        tags=['parcels']
     )
 }}
 
 {# Set the field names that will be used to group condos together. #}
-{% set find_most_common = ['property_class','property_use','area_name','lot_type_1','lot_type_2','zoning_1','neighborhood_primary']}
+{% set find_most_common = ['property_class','property_use','area_name','lot_type_1','lot_type_2','zoning_1','neighborhood_primary'] %}
 
 with 
 
@@ -17,7 +17,8 @@ We''ll see this loop happen a few times as we join in the results of find the mo
 
 {{field}}_most_common as (
     select x_ref_parcel,
-        most_common_{{field}}
+        parcel_year,
+        {{field}}
     from (
         select x_ref_parcel,
             parcel_year,
@@ -27,15 +28,15 @@ We''ll see this loop happen a few times as we join in the results of find the mo
         group by x_ref_parcel,
             parcel_year,
             {{ field }}
-    )
+    ) most_common
     where rn = 1
 ),
-{% enfor %}
+{% endfor %}
 
 final_cte as (
 
     select 
-        parcels.x_ref_parcel as parcel_no,
+        parcels.x_ref_parcel as parcel_id,
         parcels.parcel_year,
 
         {% for field in find_most_common %}
@@ -47,7 +48,9 @@ final_cte as (
         parcels.geom,
         min(parcels.parcel_address) as parcel_address,
         sum(parcels.bedrooms) as bedrooms,
-        sum(parcels.current_total) as current_total,
+        sum(parcels.current_land) as current_land_value,
+        sum(parcels.current_impr) as current_improvement_value,
+        sum(parcels.current_total) as current_total_value,
         sum(parcels.net_taxes) as net_taxes,
         sum(parcels.total_taxes) as total_taxes,
         max(parcels.lot_size) as lot_size,
@@ -72,11 +75,11 @@ final_cte as (
 )
 
 select
-    parcel_no,
+    parcel_id,
     parcel_year,
 
     {% for field in find_most_common %}
-    {% if field <> 'property_use' %} {{field}}, {% endif %}
+    {% if field != 'property_use' %} {{field}}, {% endif %}
     {% endfor %}
 
     --Clean up property uses
@@ -98,7 +101,9 @@ select
     geom,
     parcel_address,
     bedrooms,
-    current_total,
+    current_land_value,
+    current_improvement_value,
+    current_total_value,
     net_taxes,
     total_taxes,
     lot_size,

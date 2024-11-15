@@ -1,6 +1,6 @@
 {{
     config(
-        tags=["parcels","tax_roll"]
+        tags=['tax_roll']
     )
 }}
 

@@ -1,6 +1,12 @@
+{{
+    config(
+        tags=['parcels']
+    )
+}}
+
 select
 
-    parcel_no,
+    parcel_id,
     parcel_year,
     geom,
     property_use,
@@ -14,7 +20,9 @@ select
     alder_district,
     parcel_address,
     bedrooms,
-    current_total,
+    current_land_value,
+    current_improvement_value,
+    current_total_value,
     net_taxes,
     total_taxes,
     total_dwelling_units,
