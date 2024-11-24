@@ -1,0 +1,48 @@
+models:
+  - name: parcels_fix_condos
+    description: This groups together parcels that have a common x_ref_parcel value. In grouping, we find the mode of several text columns to determine the overall value to assign. Property usage is also cleaned up in this model.
+    columns:
+      - name: parcel_id
+        data_type: character varying
+      - name: parcel_year
+        data_type: double precision
+      - name: property_class
+        data_type: character varying
+      - name: area_name
+        data_type: character varying
+      - name: lot_type_1
+        data_type: character varying
+      - name: lot_type_2
+        data_type: character varying
+      - name: zoning_1
+        data_type: character varying
+      - name: neighborhood_primary
+        data_type: character varying
+      - name: property_use
+        data_type: character varying
+      - name: ward
+        data_type: double precision
+      - name: alder_district
+        data_type: integer
+      - name: geom
+        data_type: user-defined
+      - name: parcel_address
+        data_type: text
+      - name: bedrooms
+        data_type: double precision
+      - name: current_land_value
+        data_type: double precision
+      - name: current_improvement_value
+        data_type: double precision
+      - name: current_total_value
+        data_type: double precision
+      - name: net_taxes
+        data_type: double precision
+      - name: total_taxes
+        data_type: double precision
+      - name: lot_size
+        data_type: double precision
+      - name: shape_area
+        data_type: double precision
+      - name: total_dwelling_units
+        data_type: bigint

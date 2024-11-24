@@ -13,6 +13,7 @@ with
 Loop through the fields that will help us group condos together.
 We''ll see this loop happen a few times as we join in the results of find the most common value/grouping by common values.
 #}
+/*
 {% for field in find_most_common %}
 
 {{field}}_most_common as (
@@ -32,17 +33,24 @@ We''ll see this loop happen a few times as we join in the results of find the mo
     where rn = 1
 ),
 {% endfor %}
-
-final_cte as (
+*/
+agg_cte as (
 
     select 
         parcels.x_ref_parcel as parcel_id,
         parcels.parcel_year,
-
+/*
         {% for field in find_most_common %}
         {{field}}_most_common.{{field}},
         {% endfor %}
-
+*/
+        mode() within group (order by parcels.property_class) as property_class,
+        mode() within group (order by parcels.property_use) as property_use,
+        mode() within group (order by parcels.area_name) as area_name,
+        mode() within group (order by parcels.lot_type_1) as lot_type_1,
+        mode() within group (order by parcels.lot_type_2) as lot_type_2,
+        mode() within group (order by parcels.zoning_1) as zoning_1,
+        mode() within group (order by parcels.neighborhood_primary) as neighborhood_primary,
         parcels.ward,
         parcels.alder_district,
         parcels.geom,
@@ -58,17 +66,17 @@ final_cte as (
         sum(parcels.total_dwelling_units) as total_dwelling_units
 
     from {{ ref('parcels_column_rename') }} parcels
-
+/*
     {% for field in find_most_common %}
     left outer join {{field}}_most_common
         using(x_ref_parcel,parcel_year)
     {% endfor %}
-
+*/
     group by parcels.x_ref_parcel,
-        parcel_year,
+        parcel_year,/*
         {% for field in find_most_common %}
         {{field}}_most_common.{{field}},
-        {% endfor %}
+        {% endfor %}*/
         ward,
         alder_district,
         geom
@@ -77,11 +85,17 @@ final_cte as (
 select
     parcel_id,
     parcel_year,
-
+/*
     {% for field in find_most_common %}
     {% if field != 'property_use' %} {{field}}, {% endif %}
     {% endfor %}
-
+*/
+    property_class,
+    area_name,
+    lot_type_1,
+    lot_type_2,
+    zoning_1,
+    neighborhood_primary,
     --Clean up property uses
     case
         when property_use ilike '%apartment%' 
@@ -110,4 +124,4 @@ select
     shape_area,
     total_dwelling_units
 
-from final_cte
+from agg_cte
