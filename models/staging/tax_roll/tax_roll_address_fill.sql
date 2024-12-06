@@ -23,3 +23,4 @@ select
     current_matc_net_tax,
     total_current_net_tax,
     total_current_tax
+from {{ ref('tax_roll_flatten') }}

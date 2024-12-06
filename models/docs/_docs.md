@@ -351,10 +351,6 @@ This is the number assigned to the lot within a specific area or subdivision.
 This describes the primary type of the lot, such as residential, commercial, etc.
 {% enddocs %}
 
-{% docs lot_type_2 %}
-This denotes any additional classification for the type of lot.
-{% enddocs %}
-
 {% docs lot_width %}
 This specifies the width measurement of the property lot.
 {% enddocs %}
@@ -575,10 +571,155 @@ This provides the total area measurement of the property, typically in square fe
 This refers to the geometric representation of the parcel in a spatial format.
 {% enddocs %}
 
-{% docs parcel_year %}
-This represents the year when the parcel record was established or last updated.
-{% enddocs %}
-
 {% docs load_dttm %}
 This is the timestamp indicating when the property record was last loaded into the system.
+{% enddocs %}
+
+{% docs parcel_id %}
+This is the identifier for the parcel, unique to each parcel within the dataset.
+This is the identifier for the parcel, serving as a unique reference to distinguish one parcel from another in property records.
+{% enddocs %}
+
+{% docs parcel_year %}
+This represents the year associated with the parcel, converted into a numerical format to facilitate analysis over time.
+This represents the year associated with the parcel's data, which is often used for tracking property assessments or tax rolls.
+{% enddocs %}
+
+{% docs area_plan %}
+This field contains the name or identifier of the area plan that the parcel is associated with, providing context for land use and development regulations.
+This column contains text regarding the area plan for the parcel, which may include future development goals or zoning changes.
+{% enddocs %}
+
+{% docs intersect_area %}
+This value represents the area of overlap between the parcel and the area plan, calculated to assess the extent of alignment or conflict with planning objectives.
+{% enddocs %}
+
+{% docs intersect_rank %}
+This column ranks the intersections based on their intersected area, providing a relative indication of significance or priority for planning considerations.
+{% enddocs %}
+
+{% docs current_land_value %}
+This is the assessed value of the land portion of the property, reflecting its market worth and influencing taxation.
+{% enddocs %}
+
+{% docs current_improvement_value %}
+This is the assessed value attributed to the improvements on the parcel, such as buildings or other structures, impacting overall property valuation.
+{% enddocs %}
+
+{% docs current_total_value %}
+This is the total assessed value of the parcel, combining both land and improvement values, used for tax assessments and property appraisals.
+{% enddocs %}
+
+{% docs taxes_per_sqft %}
+This metric indicates the total taxes assessed per square foot of the parcel, useful for comparative analysis across properties.
+{% enddocs %}
+
+
+{% docs tax_year %}
+The year for which the property taxes are being calculated, typically representing the assessment year in which the property values were determined.
+{% enddocs %}
+
+{% docs assessed_value_land %}
+The monetary value assigned to the land portion of a property as determined by the local assessing authority, utilized for property tax calculations.
+{% enddocs %}
+
+{% docs assessed_value_improvement %}
+The monetary value assigned to the improvements (e.g., buildings, structures) on a property as determined by the local assessing authority, used for property tax calculations.
+{% enddocs %}
+
+{% docs total_assessed_value %}
+The combined assessed value of both land and improvements on a property, which is the basis for calculating property taxes.
+{% enddocs %}
+
+{% docs est_fair_mkt_land %}
+The estimated fair market value of the land portion of a property, representing what the land would likely sell for in the open market.
+{% enddocs %}
+
+{% docs est_fair_mkt_improvement %}
+The estimated fair market value of the improvements on a property, indicating what those improvements would likely fetch in a sale context.
+{% enddocs %}
+
+{% docs total_estimated_fair_market %}
+The total estimated fair market value of the property, combining both the land and improvements, often used as a benchmark for real estate transactions.
+{% enddocs %}
+
+{% docs current_county_net_tax %}
+The net amount of property tax owed to the county after accounting for any exemptions or deductions, based on the assessed value of the property.
+{% enddocs %}
+
+{% docs current_city_net_tax %}
+The net amount of property tax owed to the city after accounting for any applicable exemptions or deductions, calculated from the property's assessed value.
+{% enddocs %}
+
+{% docs current_school_net_tax %}
+The net amount of property tax owed to the school district, after accounting for exemptions or deductions, based on the property's assessed value.
+{% enddocs %}
+
+{% docs current_matc_net_tax %}
+The net amount of property tax owed for matching assessments, typically involving specific programs or assessments that benefit particular projects or initiatives.
+{% enddocs %}
+
+{% docs total_current_net_tax %}
+The total net property tax liability combining all entities (county, city, school, and any matching assessments), reflecting the overall tax burden on the property.
+{% enddocs %}
+
+{% docs total_current_tax %}
+The total amount of property tax calculated before any exemptions or adjustments, providing a comprehensive view of the tax obligations based on assessed values.
+{% enddocs %}
+
+
+{% docs id %}
+A unique identifier for each parcel of land or property within the municipality, essential for tracking ownership and property details.
+{% enddocs %}
+
+{% docs total_parcels %}
+The total number of parcels of land recorded in the municipality, representing the sum of all individual properties.
+{% enddocs %}
+
+{% docs total_bedrooms %}
+The cumulative number of bedrooms across all properties within the specified area, providing insight into housing capacity and potential occupancy.
+{% enddocs %}
+
+{% docs total_land_value %}
+The combined assessed value of all land parcels, which indicates the worth of the land itself excluding any improvements or structures.
+{% enddocs %}
+
+{% docs total_improvement_value %}
+The total assessed value of improvements or structures on the land parcels, reflecting the investment in buildings and enhancements.
+{% enddocs %}
+
+{% docs total_value %}
+The overall assessed value of all properties, calculated as the sum of total land value and total improvement value, representing the complete worth of properties.
+{% enddocs %}
+
+{% docs total_net_taxes %}
+The total amount of taxes collected from all properties after accounting for any exemptions or reductions, critical for municipal revenue generation.
+{% enddocs %}
+
+{% docs total_area %}
+The sum of land area measured in square feet or acres for all parcels, which helps in planning and zoning processes.
+{% enddocs %}
+
+{% docs avg_taxes_per_sqft %}
+The average tax amount levied per square foot across all properties, providing insight into taxation trends relative to property size. 
+{% enddocs %}
+
+{% docs lot_type_2 %}
+This column represents the classification of a specific type of lot within the municipality's land use framework. It typically indicates zoning designations, such as residential, commercial, industrial, or mixed-use attributes. Understanding the lot type helps in determining allowable uses, density, and any associated regulations governing that particular lot.
+{% enddocs %}
+
+{% docs key_set %}
+A unique identifier for a specific set of keys used to distinguish or categorize records within the dataset. This could refer to a grouping of related data based on certain criteria or attributes.
+{% enddocs %}
+
+{% docs num_records %}
+The total number of records or entries associated with a particular key set. This metric helps quantify the size of data entries and can be useful for understanding data distribution and trends over time.
+{% enddocs %}
+
+{% docs first_seen_dt %}
+The date and time when a specific record or entry was first observed or added to the dataset. This timestamp is crucial for tracking the history and lifecycle of the data.
+{% enddocs %}
+
+{% docs last_seen_dt %}
+The date and time when a specific record or entry was last observed or modified within the dataset. This information is important for understanding the recency of data and can indicate how up-to-date the information is.
 {% enddocs %}

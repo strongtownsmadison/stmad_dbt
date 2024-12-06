@@ -41,10 +41,7 @@ models:
     #Organized schema ready for querying
     reporting:
       +materialized: table
-      +schema: reporting
+      +schema: public
 
-    #Purpose-driven datasets (aggregated, super denormalized, etc)
-    #to be used directly by external applications/APIs
-    delivery:
-      +materialized: table
-      +schema: delivery
+on-run-end:
+  - "{{ grant_select_on_public() }}"

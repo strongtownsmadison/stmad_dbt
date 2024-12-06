@@ -1,0 +1,94 @@
+
+version: 2
+
+models:
+  - name: parcels_fix_lot_size
+    description: "This model performs transformations on parcel data by fixing the lot size and ensuring the correct mapping of attributes related to property and zoning classifications. It also calculates various financial metrics related to land and improvement values."
+    columns:
+      - name: parcel_id
+        data_type: character varying
+        description: ""
+
+      - name: parcel_year
+        data_type: double precision
+        description: ""
+
+      - name: geom
+        data_type: user-defined
+        description: ""
+
+      - name: property_use
+        data_type: character varying
+        description: ""
+
+      - name: property_class
+        data_type: character varying
+        description: ""
+
+      - name: area_name
+        data_type: character varying
+        description: ""
+
+      - name: lot_type_1
+        data_type: character varying
+        description: ""
+
+      - name: lot_type_2
+        data_type: character varying
+        description: ""
+
+      - name: zoning_1
+        data_type: character varying
+        description: ""
+
+      - name: neighborhood_primary
+        data_type: character varying
+        description: ""
+
+      - name: ward
+        data_type: double precision
+        description: ""
+
+      - name: alder_district
+        data_type: integer
+        description: ""
+
+      - name: parcel_address
+        data_type: text
+        description: ""
+
+      - name: bedrooms
+        data_type: double precision
+        description: ""
+
+      - name: current_land_value
+        data_type: double precision
+        description: ""
+
+      - name: current_improvement_value
+        data_type: double precision
+        description: ""
+
+      - name: current_total_value
+        data_type: double precision
+        description: ""
+
+      - name: net_taxes
+        data_type: double precision
+        description: ""
+
+      - name: total_taxes
+        data_type: double precision
+        description: ""
+
+      - name: total_dwelling_units
+        data_type: bigint
+        description: ""
+
+      - name: shape_area
+        data_type: double precision
+        description: ""
+
+      - name: lot_size
+        data_type: double precision
+        description: ""

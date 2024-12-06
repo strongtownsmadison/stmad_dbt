@@ -3,7 +3,7 @@ version: 2
 sources:
   - name: city_of_madison
     database: postgres  
-    schema: staging      
+    schema: staging
     description: Data sourced from the city of Madison.
     tables:
       - name: tax_roll_xlsx

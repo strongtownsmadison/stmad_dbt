@@ -1,0 +1,62 @@
+
+version: 2
+
+models:
+  - name: fact_area_plans
+    description: "This model aggregates data related to area plans by calculating totals for parcels, bedrooms, land value, improvement value, total value, net taxes, overall taxes, dwelling units, and area, while also computing the average of taxes per square foot."
+    columns:
+      - name: id
+        data_type: integer
+        description: ""
+
+      - name: area_plan
+        data_type: text
+        description: '{{ doc("area_plan") }}'
+
+      - name: geom
+        data_type: user-defined
+        description: '{{ doc("geom") }}'
+
+      - name: parcel_year
+        data_type: double precision
+        description: '{{ doc("parcel_year") }}'
+
+      - name: total_parcels
+        data_type: bigint
+        description: '{{ doc("total_parcels") }}'
+
+      - name: total_bedrooms
+        data_type: double precision
+        description: '{{ doc("total_bedrooms") }}'
+
+      - name: total_land_value
+        data_type: double precision
+        description: '{{ doc("total_land_value") }}'
+
+      - name: total_improvement_value
+        data_type: double precision
+        description: '{{ doc("total_improvement_value") }}'
+
+      - name: total_value
+        data_type: double precision
+        description: '{{ doc("total_value") }}'
+
+      - name: total_net_taxes
+        data_type: double precision
+        description: '{{ doc("total_net_taxes") }}'
+
+      - name: total_taxes
+        data_type: double precision
+        description: '{{ doc("total_taxes") }}'
+
+      - name: total_dwelling_units
+        data_type: numeric
+        description: '{{ doc("total_dwelling_units") }}'
+
+      - name: total_area
+        data_type: double precision
+        description: '{{ doc("total_area") }}'
+
+      - name: avg_taxes_per_sqft
+        data_type: double precision
+        description: '{{ doc("avg_taxes_per_sqft") }}'
