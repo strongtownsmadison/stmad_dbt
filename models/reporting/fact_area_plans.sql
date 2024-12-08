@@ -6,8 +6,8 @@
 
 select 
     area_plans.id,
-    area_plans.name as area_plan,
-    area_plans.geometry as geom,
+    area_plans.area_plan,
+    area_plans.geom_4326,
     parcels.parcel_year,
 
     count(parcels.parcel_id) as total_parcels,
@@ -21,11 +21,10 @@ select
     sum(parcels.lot_size) as total_area,
     sum(parcels.total_taxes) / sum(parcels.lot_size) as avg_taxes_per_sqft
 
-from {{ source('public','geometries') }} area_plans
+from {{ ref('area_plans_localize_geom') }} area_plans
 left outer join {{ ref('fact_parcels') }} parcels
-    on area_plans.name = parcels.area_plan
-where area_plans.name <> 'TOD'
+    on area_plans.area_plan = parcels.area_plan
 group by area_plans.id,
-    area_plans.name,
-    area_plans.geometry,
+    area_plans.area_plan,
+    area_plans.geom_4326,
     parcels.parcel_year

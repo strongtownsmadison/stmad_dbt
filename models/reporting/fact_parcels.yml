@@ -13,7 +13,7 @@ models:
         data_type: double precision
         description: '{{ doc("parcel_year") }}'
 
-      - name: geom
+      - name: geom_4326
         data_type: user-defined
         description: '{{ doc("geom") }}'
 

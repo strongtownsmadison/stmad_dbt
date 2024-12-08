@@ -1,6 +1,7 @@
+
 models:
   - name: parcels_column_rename
-    description: "This renames columns from the source table to be friendlier for reading them in a SQL table."
+    description: "This model renames columns from the source table to provide more user-friendly names for easier readability in a SQL table."
     columns:
       - name: ogc_fid
         data_type: integer
@@ -431,7 +432,7 @@ models:
       - name: shape_area
         data_type: double precision
         description: '{{ doc("shape_area") }}'
-      - name: geom
+      - name: geom_4326
         data_type: user-defined
         description: '{{ doc("geom") }}'
       - name: parcel_year

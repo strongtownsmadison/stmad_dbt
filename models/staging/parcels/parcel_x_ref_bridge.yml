@@ -7,12 +7,12 @@ models:
     columns:
       - name: parcel_id
         data_type: character varying
-        description: ""
+        description: '{{ doc("parcel_id") }}'
 
       - name: x_ref_parcel
         data_type: character varying
-        description: ""
+        description: '{{ doc("x_ref_parcel") }}'
 
       - name: parcel_year
         data_type: double precision
-        description: ""
+        description: '{{ doc("parcel_year") }}'

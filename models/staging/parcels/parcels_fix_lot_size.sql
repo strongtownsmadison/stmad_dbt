@@ -8,7 +8,7 @@ select
 
     parcel_id,
     parcel_year,
-    geom,
+    geom_4326,
     property_use,
     property_class,
     area_name,
@@ -30,7 +30,7 @@ select
 
     case
         when lot_size in (0, 0.01, 1, 6)
-            then ST_Area(ST_Transform(geom, 5070)) * 10.7639
+            then ST_Area(ST_Transform(geom_4326, 5070)) * 10.7639
         else lot_size
         end as lot_size
         

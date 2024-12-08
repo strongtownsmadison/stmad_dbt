@@ -7,7 +7,7 @@
 select 
     ogc_fid as ogc_fid,
     objectid as obj_id,
-    parcel as parcel,
+    parcel as parcel_id,
     xrefparcel as x_ref_parcel,
     "address" as parcel_address,
     dateparcelchanged as date_parcel_changed,
@@ -148,7 +148,7 @@ select
     ycoord as y_coord,
     shape_length as shape_length,
     shape_area as shape_area,
-    geom,
+    geom as geom_4326,
     date_part('year',load_dttm) as parcel_year,
     load_dttm
 from {{ source('city_of_madison','parcels_geojson') }}

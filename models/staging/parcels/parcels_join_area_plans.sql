@@ -8,14 +8,11 @@ select
 
     parcels.parcel_id,
     parcels.parcel_year,
-    geo.name as area_plan,
-    ST_Area(ST_Intersection(parcels.geom,geo.geometry)) as intersect_area,
-    row_number() over (partition by parcels.parcel_id,parcels.parcel_year order by ST_Area(ST_Intersection(parcels.geom,geo.geometry)) desc) as intersect_rank
+    area_plans.area_plan,
+    ST_Area(ST_Intersection(parcels.geom_4326,area_plans.geom_4326)) as intersect_area,
+    row_number() over (partition by parcels.parcel_id,parcels.parcel_year order by ST_Area(ST_Intersection(parcels.geom_4326,area_plans.geom_4326)) desc) as intersect_rank
 
 from {{ ref('parcels_fix_condos') }} parcels
 
-inner join {{ source('public','geometries') }} geo
-    on ST_Intersects(parcels.geom,geo.geometry)
-    --Temporary logic to remove duplicate and TOD overlay
-    and geo.name <> 'TOD'
-    and geo.id <> 3
+inner join {{ ref('area_plans_localize_geom') }} area_plans
+    on ST_Intersects(parcels.geom_4326,area_plans.geom_4326)

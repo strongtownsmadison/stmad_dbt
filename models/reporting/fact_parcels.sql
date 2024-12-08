@@ -8,7 +8,7 @@
 select
     parcels.parcel_id,
     parcels.parcel_year,
-    parcels.geom,
+    parcels.geom_4326,
     parcels.property_use,
     parcels.property_class,
     parcels.area_name,

@@ -13,7 +13,7 @@ models:
         data_type: text
         description: '{{ doc("area_plan") }}'
 
-      - name: geom
+      - name: geom_4326
         data_type: user-defined
         description: '{{ doc("geom") }}'
 

@@ -723,3 +723,11 @@ The date and time when a specific record or entry was first observed or added to
 {% docs last_seen_dt %}
 The date and time when a specific record or entry was last observed or modified within the dataset. This information is important for understanding the recency of data and can indicate how up-to-date the information is.
 {% enddocs %}
+
+{% docs st_transform %}
+This function reprojects geometries to a different coordinate reference system (CRS). It is commonly used in spatial analysis to ensure that geometrical data aligns correctly with other spatial datasets, facilitating accurate mapping and analysis. The transformation process adjusts the coordinates of the geometries based on the specified target CRS.
+{% enddocs %}
+
+{% docs geom_4326 %}
+This column typically represents geographical data in the WGS 84 coordinate system, which uses latitude and longitude degrees as coordinates. It's often used in mapping and spatial analysis to accurately position features on the Earth's surface.
+{% enddocs %}

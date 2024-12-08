@@ -43,5 +43,8 @@ models:
       +materialized: table
       +schema: public
 
+vars:
+  s_wi_srid: 103361
+
 on-run-end:
   - "{{ grant_select_on_public() }}"
