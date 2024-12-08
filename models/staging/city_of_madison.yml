@@ -22,3 +22,7 @@ sources:
         description: >
           Raw data from city of Madison open data about tax parcels, including geospatial information.
           https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::tax-parcels-assessor-property-information/about
+      - name: streets_geojson
+        description: >
+          Raw data from city of Madison open data about streets and pavement, including geospatial information.
+          https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::street-centerlines-and-pavement-data/about
