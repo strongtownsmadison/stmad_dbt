@@ -1,0 +1,66 @@
+
+version: 2
+
+models:
+  - name: tax_roll_flatten
+    description: "This model merges multiple source datasets to flatten tax roll data, calculates total assessed values, estimates fair market values, and computes net taxes for various jurisdictions."
+    columns:
+      - name: parcel_id
+        data_type: character varying
+        description: '{{ doc("parcel_id") }}'
+
+      - name: tax_year
+        data_type: integer
+        description: '{{ doc("tax_year") }}'
+
+      - name: parcel_address
+        data_type: character varying
+        description: '{{ doc("parcel_address") }}'
+
+      - name: assessed_value_land
+        data_type: numeric
+        description: '{{ doc("assessed_value_land") }}'
+
+      - name: assessed_value_improvement
+        data_type: numeric
+        description: '{{ doc("assessed_value_improvement") }}'
+
+      - name: total_assessed_value
+        data_type: numeric
+        description: '{{ doc("total_assessed_value") }}'
+
+      - name: est_fair_mkt_land
+        data_type: numeric
+        description: '{{ doc("est_fair_mkt_land") }}'
+
+      - name: est_fair_mkt_improvement
+        data_type: numeric
+        description: '{{ doc("est_fair_mkt_improvement") }}'
+
+      - name: total_estimated_fair_market
+        data_type: numeric
+        description: '{{ doc("total_estimated_fair_market") }}'
+
+      - name: current_county_net_tax
+        data_type: numeric
+        description: '{{ doc("current_county_net_tax") }}'
+
+      - name: current_city_net_tax
+        data_type: numeric
+        description: '{{ doc("current_city_net_tax") }}'
+
+      - name: current_school_net_tax
+        data_type: numeric
+        description: '{{ doc("current_school_net_tax") }}'
+
+      - name: current_matc_net_tax
+        data_type: numeric
+        description: '{{ doc("current_matc_net_tax") }}'
+
+      - name: total_current_net_tax
+        data_type: numeric
+        description: '{{ doc("total_current_net_tax") }}'
+
+      - name: total_current_tax
+        data_type: numeric
+        description: '{{ doc("total_current_tax") }}'

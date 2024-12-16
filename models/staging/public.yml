@@ -1,0 +1,19 @@
+version: 2
+
+sources:
+  - name: public
+    database: postgres  
+    schema: public
+    description: Data loaded into the public schema.
+    tables:
+      - name: geometries
+        description: "Various geometries to act as overlays in the city."
+        schema: public
+        columns:
+          - name: id
+            description: "A unique sequential ID acting as a primary key."
+          - name: geom_type
+            description: "Indicates the type of overlay (ex: Area Plan, TOD)"
+          - name: name
+            description: "The name of the geometry."
+        

@@ -1,0 +1,94 @@
+
+version: 2
+
+models:
+  - name: parcels_fix_lot_size
+    description: "This model selects data from a reference table and transforms the `lot_size` based on specified conditions, converting the geometry to a different spatial reference system before calculating its area in square feet when certain size conditions are met."
+    columns:
+      - name: parcel_id
+        data_type: character varying
+        description: '{{ doc("parcel_id") }}'
+
+      - name: parcel_year
+        data_type: double precision
+        description: '{{ doc("parcel_year") }}'
+
+      - name: geom_4326
+        data_type: user-defined
+        description: '{{ doc("geom_4326") }}'
+
+      - name: property_use
+        data_type: character varying
+        description: '{{ doc("property_use") }}'
+
+      - name: property_class
+        data_type: character varying
+        description: '{{ doc("property_class") }}'
+
+      - name: area_name
+        data_type: character varying
+        description: '{{ doc("area_name") }}'
+
+      - name: lot_type_1
+        data_type: character varying
+        description: '{{ doc("lot_type_1") }}'
+
+      - name: lot_type_2
+        data_type: character varying
+        description: '{{ doc("lot_type_2") }}'
+
+      - name: zoning_1
+        data_type: character varying
+        description: '{{ doc("zoning_1") }}'
+
+      - name: neighborhood_primary
+        data_type: character varying
+        description: '{{ doc("neighborhood_primary") }}'
+
+      - name: ward
+        data_type: double precision
+        description: '{{ doc("ward") }}'
+
+      - name: alder_district
+        data_type: integer
+        description: '{{ doc("alder_district") }}'
+
+      - name: parcel_address
+        data_type: text
+        description: '{{ doc("parcel_address") }}'
+
+      - name: bedrooms
+        data_type: double precision
+        description: '{{ doc("bedrooms") }}'
+
+      - name: current_land_value
+        data_type: double precision
+        description: '{{ doc("current_land_value") }}'
+
+      - name: current_improvement_value
+        data_type: double precision
+        description: '{{ doc("current_improvement_value") }}'
+
+      - name: current_total_value
+        data_type: double precision
+        description: '{{ doc("current_total_value") }}'
+
+      - name: net_taxes
+        data_type: double precision
+        description: '{{ doc("net_taxes") }}'
+
+      - name: total_taxes
+        data_type: double precision
+        description: '{{ doc("total_taxes") }}'
+
+      - name: total_dwelling_units
+        data_type: bigint
+        description: '{{ doc("total_dwelling_units") }}'
+
+      - name: shape_area
+        data_type: double precision
+        description: '{{ doc("shape_area") }}'
+
+      - name: lot_size
+        data_type: double precision
+        description: '{{ doc("lot_size") }}'

@@ -1,0 +1,62 @@
+
+version: 2
+
+models:
+  - name: streets_localize_geom
+    description: "This model selects and transforms street data by renaming columns, extracting the year from a timestamp, and applying conditional logic to determine attributes such as sidewalk presence, one-way status, and maintenance responsibility. It also transforms the geometry to a specified spatial reference system."
+    columns:
+      - name: street_id
+        data_type: integer
+        description: '{{ doc("street_id") }}'
+
+      - name: street_year
+        data_type: double precision
+        description: '{{ doc("street_year") }}'
+
+      - name: geom_4326
+        data_type: user-defined
+        description: '{{ doc("geom_4326") }}'
+
+      - name: speed_limit
+        data_type: integer
+        description: '{{ doc("speed_limit") }}'
+
+      - name: street_width
+        data_type: double precision
+        description: '{{ doc("street_width") }}'
+
+      - name: street_lanes
+        data_type: integer
+        description: '{{ doc("street_lanes") }}'
+
+      - name: street_length
+        data_type: double precision
+        description: '{{ doc("street_length") }}'
+
+      - name: is_truck_route
+        data_type: character varying
+        description: '{{ doc("is_truck_route") }}'
+
+      - name: has_sidewalk
+        data_type: integer
+        description: '{{ doc("has_sidewalk") }}'
+
+      - name: median_width
+        data_type: double precision
+        description: '{{ doc("median_width") }}'
+
+      - name: is_oneway
+        data_type: integer
+        description: '{{ doc("is_oneway") }}'
+
+      - name: city_maintains
+        data_type: integer
+        description: '{{ doc("city_maintains") }}'
+
+      - name: alder_district
+        data_type: character varying
+        description: '{{ doc("alder_district") }}'
+
+      - name: local_geom
+        data_type: user-defined
+        description: '{{ doc("local_geom") }}'

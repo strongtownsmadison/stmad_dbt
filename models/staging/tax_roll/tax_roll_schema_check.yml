@@ -1,0 +1,22 @@
+
+version: 2
+
+models:
+  - name: tax_roll_schema_check
+    description: "This model performs a check on the tax roll schema by aggregating data into an array for the key set, counting the number of records, and determining the earliest and latest dates when records were observed."
+    columns:
+      - name: key_set
+        data_type: array
+        description: '{{ doc("key_set") }}'
+
+      - name: num_records
+        data_type: bigint
+        description: '{{ doc("num_records") }}'
+
+      - name: first_seen_dt
+        data_type: date
+        description: '{{ doc("first_seen_dt") }}'
+
+      - name: last_seen_dt
+        data_type: date
+        description: '{{ doc("last_seen_dt") }}'

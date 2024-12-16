@@ -1,0 +1,22 @@
+
+version: 2
+
+models:
+  - name: alder_districts_localize_geom
+    description: "This model selects alder district data from the source, renaming columns for clarity, converting the alder district identifier to a string prefixed with 'District ', and transforming the geometry to a specified spatial reference system while retaining the original geometry."
+    columns:
+      - name: district_id
+        data_type: integer
+        description: '{{ doc("district_id") }}'
+
+      - name: alder_district
+        data_type: text
+        description: '{{ doc("alder_district") }}'
+
+      - name: geom_4326
+        data_type: user-defined
+        description: '{{ doc("geom_4326") }}'
+
+      - name: geom_local
+        data_type: user-defined
+        description: '{{ doc("geom_local") }}'
