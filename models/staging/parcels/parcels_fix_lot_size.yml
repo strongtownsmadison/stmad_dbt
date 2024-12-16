@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: parcels_fix_lot_size
-    description: "This model performs transformations on parcel data by fixing the lot size and ensuring the correct mapping of attributes related to property and zoning classifications. It also calculates various financial metrics related to land and improvement values."
+    description: "This model selects data from a reference table and transforms the `lot_size` based on specified conditions, converting the geometry to a different spatial reference system before calculating its area in square feet when certain size conditions are met."
     columns:
       - name: parcel_id
         data_type: character varying

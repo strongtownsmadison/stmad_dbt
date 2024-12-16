@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: parcel_x_ref_bridge
-    description: "This model performs a transformation to create a reference bridge, linking parcel identifiers with cross-referenced parcel information and their corresponding year, while ensuring the data types are appropriately defined for each column."
+    description: "This model selects distinct combinations of parcel_id, x_ref_parcel, and parcel_year from the referenced parcels_column_rename model."
     columns:
       - name: parcel_id
         data_type: character varying

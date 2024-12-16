@@ -1,13 +1,11 @@
-{{
-    config(
-        tags=['area_plans']
-    )
-}}
-/*
+{% macro generate_fact_overlay(overlay_ref,overlay_alias,overlay_name) %}
+
+{% set ref_streets_join = "streets_join_" ~ overlay_alias %}
+
 with parcel_info as (
     select 
-        area_plans.area_plan,
-        area_plans.geom_4326,
+        {{overlay_alias}}.{{overlay_name}},
+        {{overlay_alias}}.geom_4326,
         parcels.parcel_year,
 
         count(parcels.parcel_id) as total_parcels,
@@ -21,37 +19,37 @@ with parcel_info as (
         sum(parcels.lot_size) as total_area,
         sum(parcels.total_taxes) / sum(parcels.lot_size) as avg_taxes_per_sqft
 
-    from {{ ref('area_plans_localize_geom') }} area_plans
+    from {{ ref(overlay_ref) }} {{overlay_alias}}
     left outer join {{ ref('fact_parcels') }} parcels
-        on area_plans.area_plan = parcels.area_plan
-    group by area_plans.id,
-        area_plans.area_plan,
-        area_plans.geom_4326,
+        on {{overlay_alias}}.{{overlay_name}} = parcels.{{overlay_name}}
+    group by
+        {{overlay_alias}}.{{overlay_name}},
+        {{overlay_alias}}.geom_4326,
         parcels.parcel_year
 ),
 
 street_info as (
     select
-        area_plans.area_plan,
-        area_plans.geom_4326,
+        {{overlay_alias}}.{{overlay_name}},
+        {{overlay_alias}}.geom_4326,
         streets.street_year,
         
         sum(streets.street_width * streets.intersect_street_length) as total_street_sqft,
         sum(streets.city_maintains * streets.street_width * streets.intersect_street_length) as total_city_maint_street_sqft,
         sum(streets.intersect_street_length * streets.speed_limit) / sum(streets.intersect_street_length) as avg_speed_limit,
         ST_Union(streets.intersect_geom_4326) as streets_geom_4326,
-        ST_Union(case when city_maintains = 1 then streets.intersect_geom_4326 else null end) as city_maint_streets_geom_4326
+        ST_Union(case when streets.city_maintains = 1 then streets.intersect_geom_4326 else null end) as city_maint_streets_geom_4326
 
-    from {{ ref('area_plans_localize_geom') }} area_plans
-    left outer join {{ ref('streets_join_area_plans' )}} streets
-        on area_plans.area_plan = streets.area_plan
-    group by area_plans.area_plan,
-        area_plans.geom_4326,
+    from {{ ref(overlay_ref) }} {{overlay_alias}}
+    left outer join {{ ref(ref_streets_join)}} streets
+        on {{overlay_alias}}.{{overlay_name}} = streets.{{overlay_name}}
+    group by {{overlay_alias}}.{{overlay_name}},
+        {{overlay_alias}}.geom_4326,
         streets.street_year
 )
 
 select
-    parcel_info.area_plan,
+    parcel_info.{{overlay_name}},
     parcel_info.parcel_year as year_number,
     parcel_info.geom_4326,
     parcel_info.total_parcels,
@@ -75,8 +73,7 @@ select
 
 from parcel_info
 left outer join street_info
-    on parcel_info.area_plan = street_info.area_plan
+    on parcel_info.{{overlay_name}} = street_info.{{overlay_name}}
     and parcel_info.parcel_year = street_info.street_year
-*/
 
-{{ generate_fact_overlay('area_plans_localize_geom','area_plans','area_plan') }}
+{% endmacro %}

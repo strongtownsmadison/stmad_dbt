@@ -26,3 +26,8 @@ sources:
         description: >
           Raw data from city of Madison open data about streets and pavement, including geospatial information.
           https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::street-centerlines-and-pavement-data/about
+      - name: alder_districts_geojson
+        description: >
+          Contains geometry overlays for aldermanic districts of the city of Madison.
+          https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::alder-districts-1/about
+          

@@ -4,6 +4,10 @@
     )
 }}
 
+{{ apply_overlay_to_streets('area_plans_localize_geom','area_plans','area_plan')}}
+
+
+/*
 select
     streets.street_id,
     streets.street_year,
@@ -17,3 +21,4 @@ select
 from {{ ref('streets_localize_geom') }} streets
 inner join {{ ref('area_plans_localize_geom') }} as area_plans
     on ST_Intersects(streets.geom_4326,area_plans.geom_4326)
+*/

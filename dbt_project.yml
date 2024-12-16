@@ -44,7 +44,7 @@ models:
       +schema: public
 
 vars:
-  s_wi_srid: 103361
+  s_wi_srid: 2289
 
 on-run-end:
   - "{{ grant_select_on_public() }}"

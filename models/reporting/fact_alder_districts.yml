@@ -2,12 +2,12 @@
 version: 2
 
 models:
-  - name: fact_area_plans
-    description: "This model aggregates data from area plans and parcels to compute totals of parcels, bedrooms, land and improvement values, taxes, dwelling units, and area size. It also calculates average taxes per square foot and aggregates street data to derive total street square footage, city-maintained street square footage, and average speed limits. Finally, it combines this information to calculate taxes per city-maintained street square foot."
+  - name: fact_alder_districts
+    description: "This model aggregates data on parcels and streets within alder districts, calculating totals for various parcel attributes such as the number of parcels, bedrooms, land and improvement values, as well as total taxes. It also compiles street statistics, including total street area, city-maintained street area, and average speed limit. The final output merges these two sets of information, including a calculated ratio of taxes per square foot of city-maintained street."
     columns:
-      - name: area_plan
+      - name: alder_district
         data_type: text
-        description: '{{ doc("area_plan") }}'
+        description: '{{ doc("alder_district") }}'
 
       - name: year_number
         data_type: double precision

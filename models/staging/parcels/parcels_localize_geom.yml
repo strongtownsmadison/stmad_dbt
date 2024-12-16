@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: parcels_localize_geom
-    description: "This model transforms geometrical data by applying a spatial function to reproject the geometry of parcels into a different coordinate system, ensuring spatial accuracy for further analysis."
+    description: "This model selects distinct parcel records, renaming a column and transforming geometric data into a specified spatial reference system."
     columns:
       - name: parcel_id
         data_type: character varying
@@ -13,6 +13,6 @@ models:
         data_type: double precision
         description: '{{ doc("parcel_year") }}'
 
-      - name: geom_4326
+      - name: local_geom
         data_type: user-defined
-        description: '{{ doc("geom_4326") }}'
+        description: '{{ doc("local_geom") }}'

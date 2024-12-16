@@ -3,7 +3,7 @@ version: 2
 
 models:
   - name: parcels_fix_condos
-    description: "This model joins parcel data with condo-related information, applying transformations to ensure proper representation of property classifications, zoning designations, and other attributes relevant to parcels designated as condos. It includes calculations for current values and taxes, while maintaining geometry data for spatial analysis."
+    description: "This model aggregates data by parcel ID and year, applying the mode function to determine the most frequent values for various parcel attributes. It also sums and calculates minimum and maximum values for selected financial and property metrics. Lastly, it standardizes the property use classification based on specific patterns before selecting the relevant columns for output."
     columns:
       - name: parcel_id
         data_type: character varying
@@ -51,7 +51,7 @@ models:
 
       - name: geom_4326
         data_type: user-defined
-        description: '{{ doc("geom") }}'
+        description: '{{ doc("geom_4326") }}'
 
       - name: parcel_address
         data_type: text
