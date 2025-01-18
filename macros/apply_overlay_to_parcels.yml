@@ -1,0 +1,37 @@
+version: 2
+
+macros:
+  - name: apply_overlay_to_parcels
+    description: >
+      This macro generates the SQL for joining a generalized set of geospatial polygons to the tax parcel polygons. This helps keeps consistency and reduces repetition when introducing new overlays into the project.
+
+      Tax parcels are attributed by calculating the area of intersection with the provided overlay, then ranked based on the largest area of intersection.
+
+      Typical downstream usage would select the result where intersect_rank = 1 (largest intersection).
+
+
+      Returns a SQL statement with the following columns:
+
+      parcel_id, parcel_year, <overlay_name>, intersect_area, intersect_rank
+
+
+      Example: To join the city of Madison's area plans to tax parcels, we would use the macro like so:
+
+        {%raw%}{{ apply_overlay_to_parcels('area_plans_localize_geom','area_plans','area_plan')}}{%endraw%}
+
+        area_plans_localize_geom: A reference that contains the geometry of the area plan and the area plan name
+
+        area_plans: The alias to be used in the compiled SQL
+
+        area_plan: The column name from the reference that contains the area plan names
+        
+    arguments:
+      - name: overlay_ref
+        type: string
+        description: The reference that contains the polygons of the overlay.
+      - name: overlay_alias
+        type: string
+        description: The alias to be used for the overlay reference.
+      - name: overlay_name
+        type: string
+        description: The column name that contains the name of the individual overlays.

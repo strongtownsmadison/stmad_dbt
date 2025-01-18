@@ -42,8 +42,13 @@ The primary objective of this dbt project is to centralize and transform municip
 - To report issues
 - To discuss data analysis needs
 
+## Acknowledgements
+Thanks to Will Ochowicz for hosting the database and this documentation site.
+Thanks to Jim Kreft, Blake Wasung, and Harald Kliems for providing a starting point for parcel/tax roll cleaning steps.
+
 ## Recommended Next Steps
 1. Review staging transformations
 2. Validate public schema fact tables
 3. Develop additional geospatial analysis models
+4. Provide instructions for running in defer mode (easier for others to contribute)
 {% enddocs %}
