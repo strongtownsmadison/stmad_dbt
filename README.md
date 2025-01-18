@@ -1,4 +1,4 @@
-This is the dbt project that organizes the transformations for data related to the city of Madison. Visit the docs page [here](https://madison-data.house/docs/#!/overview).
+This is the dbt project that organizes the transformations for data related to supporting Strong Towns advocacy in Madison. Visit the docs page [here](https://madison-data.house/docs/#!/overview).
 
 Reach out to Ben Noffke (bnoffke3790@gmail.com) if you're interested in contributing.
 
