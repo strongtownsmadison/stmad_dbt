@@ -1,10 +1,6 @@
-Welcome to your new dbt project!
+This is the dbt project that organizes the transformations for data related to the city of Madison. Visit the docs page [here](https://madison-data.house/docs/#!/overview).
 
-### Using the starter project
-
-Try running the following commands:
-- dbt run
-- dbt test
+Reach out to Ben Noffke (bnoffke3790@gmail.com) if you're interested in contributing.
 
 
 ### Resources:
