@@ -1,0 +1,35 @@
+version: 2
+
+macros:
+  - name: apply_overlay_to_streets
+    description: >
+      This macro generates the SQL for joining a generalized set of geospatial polygons to the street line segments. This helps keeps consistency and reduces repetition when introducing new overlays into the project.
+
+      Streets are attributed to overlay polygons by calculating the length of intersection. The facts associated with the street are attributed to each intersecting overlay, but the length is scaled to each overlay polygon based on the proportion of intersection. The geometry of the street line segment is returned as the section that intersects with the given overlay.
+
+
+      Returns a SQL statement with the following columns:
+
+      street_id, street_year, <overlay_name>, intersect_geom_4326, intersect_street_length, and other associated street facts
+
+
+      Example: To join the city of Madison's area plans to streets, we would use the macro like so:
+
+        {%raw%}{{ apply_overlay_to_streets('area_plans_localize_geom','area_plans','area_plan')}}{%endraw%}
+
+        area_plans_localize_geom: A reference that contains the geometry of the area plan and the area plan name
+
+        area_plans: The alias to be used in the compiled SQL
+
+        area_plan: The column name from the reference that contains the area plan names
+        
+    arguments:
+      - name: overlay_ref
+        type: string
+        description: The reference that contains the polygons of the overlay.
+      - name: overlay_alias
+        type: string
+        description: The alias to be used for the overlay reference.
+      - name: overlay_name
+        type: string
+        description: The column name that contains the name of the individual overlays.

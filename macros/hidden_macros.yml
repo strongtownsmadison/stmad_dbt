@@ -1,0 +1,9 @@
+version: 2
+
+macros:
+  - name: generate_schema_name
+    docs:
+      show: false
+  - name: grant_select_on_public
+    docs:
+      show: false

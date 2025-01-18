@@ -1,0 +1,33 @@
+version: 2
+
+macros:
+  - name: generate_fact_overlay
+    description: >
+      This macro builds upon the apply_overlay_to_parcels and apply_overlay_to_streets macros to collect metrics from tax parcels and streets, aggregating them into a given overlay.
+      This ensures a consistent treatment and column set when adding new overlays into the data, reducing the maintenance burden with future updates.
+      Currently, it is assumed that the model leveraging apply_overlay_to_parcels is joined to parcels and the <overlay_name> column is available in the fact_parcels model. For streets, it is assumed that the model that joins streets to the overlay is named "streets_join_<overlay_alias>".
+
+      
+      The SQL aggregates facts about parcels, grouping by the overlay, aggregates facts about streets, grouping by the overlay, then joins the two based on the overlay.
+
+
+      Example: To generate fact_area_plans, which aggregates parcel and street data for each area plan, use the macro like so in a dbt model:
+
+        {%raw%}{{ generate_fact_overlay('area_plans_localize_geom','area_plans','area_plan')}}{%endraw%}
+
+        area_plans_localize_geom: A reference that contains the geometry of the area plan and the area plan name
+
+        area_plans: The alias to be used in the compiled SQL
+
+        area_plan: The column name from the reference that contains the area plan names
+        
+    arguments:
+      - name: overlay_ref
+        type: string
+        description: The reference that contains the polygons of the overlay.
+      - name: overlay_alias
+        type: string
+        description: The alias to be used for the overlay reference.
+      - name: overlay_name
+        type: string
+        description: The column name that contains the name of the individual overlays.
