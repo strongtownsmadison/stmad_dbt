@@ -1,0 +1,1 @@
+dbt run-operation clean_dev_schema --target dev
