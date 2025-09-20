@@ -2,15 +2,17 @@
 source ./.venv/bin/activate
 echo "✅ Virtual environment activated"
 
+export DBT_DEFER=""
+export DBT_STATE=""
 #Prep prod's current state for defer
-mkdir -p state
-export DBT_DEFER=1
-export DBT_STATE=./state
 dbt compile --target prod
+mkdir -p state
 cp target/manifest.json state/
-echo "✅ DBT state prepared for defer"
 
 #Set env vars for defer
-echo "✅ DBT_DEFER and DBT_STATE environment variables set"
+export DBT_DEFER=1
+export DBT_STATE=./state
+echo "✅ DBT state prepared for defer"
+
 
 echo "🎉 DBT development environment is ready!"
