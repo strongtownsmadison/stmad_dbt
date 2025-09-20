@@ -3,11 +3,12 @@ This is the dbt project that organizes the transformations for data related to s
 Reach out to Ben Noffke (bnoffke3790@gmail.com) if you're interested in contributing. You'll need a development schema created in our postgres database.
 
 # Set Up
-1. Run `install_dbt.sh` to get python if you don't have it and set up the dbt environment. This will also tell you which environment variables should be set for dbt.
+1. Set environment variables DBT_USER and DBT_PASSWORD, which should match your postgres credentials.
+    - You can do `export DBT_USER="your_user" && export DBT_PASSWORD="your_password"
+2. Run `./install_dbt.sh` to get python if you don't have it and set up the dbt environment.
     - This is only required when you first begin, but this will also update dbt for you.
-    - You should create a DBT_USER and DBT_PASSWORD environment variables that match your postgres username/password.
-2. Run `source ./dbt_start_dev.sh` to complete session set up steps (virtual environment, defer steps).
-3. When you're done with development, clean up your dev schema by running `./clean_dev_schema.sh`.
+3. Run `source ./dbt_start_dev.sh` to complete session set up steps (virtual environment, defer steps).
+4. When you're done with development, clean up your dev schema by running `./clean_dev_schema.sh`.
 
 # Documenting Models
 We use dbt's docs blocks to hold column definitions to make them reusable across models. You can use the docs macro in your model's yml after updating `/docs/_docs.md`. This file was first meant to be used by AI to manage documentation, so it's just a big list.
