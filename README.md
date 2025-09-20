@@ -4,7 +4,7 @@ Reach out to Ben Noffke (bnoffke3790@gmail.com) if you're interested in contribu
 
 # Set Up
 1. Set environment variables DBT_USER and DBT_PASSWORD, which should match your postgres credentials.
-    - You can do `export DBT_USER="your_user" && export DBT_PASSWORD="your_password"
+    - You can do `export DBT_USER="your_user" && export DBT_PASSWORD="your_password"`
 2. Run `./install_dbt.sh` to get python if you don't have it and set up the dbt environment.
     - This is only required when you first begin, but this will also update dbt for you.
 3. Run `source ./dbt_start_dev.sh` to complete session set up steps (virtual environment, defer steps).
