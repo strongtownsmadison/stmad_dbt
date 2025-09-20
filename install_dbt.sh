@@ -1,93 +1,68 @@
 #!/bin/bash
 
-# DBT Setup Script
-# This script sets up a Python environment with dbt-core and dbt-postgres
+# DBT Setup Script with uv
+# This script sets up a Python environment with dbt-core and dbt-postgres using uv
 
 set -e  # Exit on any error
 
-echo "🚀 Starting DBT setup..."
+echo "🚀 Starting DBT setup with uv..."
 
 # Function to check if command exists
 command_exists() {
     command -v "$1" >/dev/null 2>&1
 }
 
-# Function to install Python based on OS
-install_python() {
-    echo "📦 Installing Python..."
+# Function to install uv based on OS
+install_uv() {
+    echo "📦 Installing uv..."
     
-    if [[ "$OSTYPE" == "darwin"* ]]; then
-        # macOS
-        if command_exists brew; then
-            brew install python3
-        else
-            echo "❌ Homebrew not found. Please install Homebrew first or install Python manually."
-            echo "Visit: https://brew.sh/"
-            exit 1
-        fi
-    elif [[ "$OSTYPE" == "linux-gnu"* ]]; then
-        # Linux
-        if command_exists apt-get; then
-            # Debian/Ubuntu
-            sudo apt-get update
-            sudo apt-get install -y python3 python3-pip python3-venv
-        elif command_exists yum; then
-            # CentOS/RHEL
-            sudo yum install -y python3 python3-pip python3-venv
-        elif command_exists dnf; then
-            # Fedora
-            sudo dnf install -y python3 python3-pip python3-venv
-        elif command_exists pacman; then
-            # Arch Linux
-            sudo pacman -S python python-pip
-        else
-            echo "❌ Unsupported Linux distribution. Please install Python manually."
-            exit 1
-        fi
+    if command_exists curl; then
+        curl -LsSf https://astral.sh/uv/install.sh | sh
+        # Add uv to PATH for current session
+        export PATH="$HOME/.local/bin:$PATH"
+    elif command_exists wget; then
+        wget -qO- https://astral.sh/uv/install.sh | sh
+        # Add uv to PATH for current session
+        export PATH="$HOME/.local/bin:$PATH"
     else
-        echo "❌ Unsupported operating system: $OSTYPE"
-        echo "Please install Python manually and re-run this script."
+        echo "❌ Neither curl nor wget found. Please install one of them first."
+        echo "Or install uv manually: https://docs.astral.sh/uv/getting-started/installation/"
+        exit 1
+    fi
+    
+    # Verify installation
+    if command_exists uv; then
+        echo "✅ uv installed successfully"
+    else
+        echo "❌ uv installation failed. Please install manually."
+        echo "Visit: https://docs.astral.sh/uv/getting-started/installation/"
         exit 1
     fi
 }
 
-# 1. Check if Python is installed, install if not found
-echo "🔍 Checking for Python installation..."
-if command_exists python3; then
-    PYTHON_VERSION=$(python3 --version 2>&1 | cut -d' ' -f2)
-    echo "✅ Python $PYTHON_VERSION found"
-elif command_exists python; then
-    PYTHON_VERSION=$(python --version 2>&1 | cut -d' ' -f2)
-    if [[ $PYTHON_VERSION == 3.* ]]; then
-        echo "✅ Python $PYTHON_VERSION found"
-        # Create alias for consistency
-        alias python3=python
-    else
-        echo "❌ Python 2.x detected. Python 3.x is required."
-        install_python
-    fi
+# 1. Check if uv is installed, install if not found
+echo "🔍 Checking for uv installation..."
+if command_exists uv; then
+    UV_VERSION=$(uv --version 2>&1)
+    echo "✅ $UV_VERSION found"
 else
-    echo "❌ Python not found"
-    install_python
+    echo "❌ uv not found"
+    install_uv
 fi
 
-# 2. Create Python virtual environment
-echo "🏗️  Creating virtual environment..."
-if [ -d ".venv" ]; then
-    echo "⚠️  Virtual environment '.venv' already exists. Removing it..."
-    rm -rf .venv
+# 2. Check if pyproject.toml exists
+if [ ! -f "pyproject.toml" ]; then
+    echo "❌ pyproject.toml not found. Please create it first."
+    echo "Run this script from a directory containing pyproject.toml"
+    exit 1
 fi
 
-python3 -m venv .venv
-echo "✅ Virtual environment created"
+# 3. Create/sync virtual environment with uv
+echo "🏗️  Creating virtual environment with uv..."
+uv sync
+echo "✅ Virtual environment created and dependencies installed"
 
-# 4. Install dbt packages
-echo "📥 Installing dbt packages..."
-python -m pip install --upgrade pip
-python -m pip install dbt-core dbt-postgres
-echo "✅ dbt-core and dbt-postgres installed"
-
-# 5. Create profiles.yml
+# 4. Create profiles.yml
 echo "📄 Creating dbt profiles.yml..."
 
 # Create .dbt directory if it doesn't exist
@@ -98,7 +73,7 @@ cat > ~/.dbt/profiles.yml << 'EOL'
 # DBT Profiles Configuration
 # Edit the values below to match your PostgreSQL database configuration
 
-default:
+stmad_dbt:
   outputs:
     dev:
       type: postgres
@@ -145,4 +120,4 @@ echo "To get started on development run:"
 echo "   source ./dbt_start_dev.sh"
 echo ""
 echo "🔍 Verify installation:"
-dbt --version
+uv run dbt --version
