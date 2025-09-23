@@ -32,7 +32,7 @@ agg_cte as (
         max(parcels.shape_area) as shape_area,
         sum(parcels.total_dwelling_units) as total_dwelling_units
 
-    from {{ ref('parcels_column_rename') }} parcels
+    from {{ ref('parcels_union') }} parcels
 
     group by x_ref_parcel,
         parcel_year,

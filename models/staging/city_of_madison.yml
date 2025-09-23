@@ -18,13 +18,21 @@ sources:
             description: "The contents of the Excel file, converted to JSON format."
           - name: load_dttm
             description: "The datetime this row was loaded."
+      - name: parcels_geojson_legacy
+        description: >
+          Raw data from city of Madison open data about tax parcels, including geospatial information. This is the legacy version of the data, json is already flattened (fragile for ingestion).
+          https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::tax-parcels-assessor-property-information/about
+      - name: streets_geojson_legacy
+        description: >
+          Raw data from city of Madison open data about streets and pavement, including geospatial information. This is the legacy version of the data, json is already flattened (fragile for ingestion).  
+          https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::street-centerlines-and-pavement-data/about
       - name: parcels_geojson
         description: >
-          Raw data from city of Madison open data about tax parcels, including geospatial information.
+          Raw data from city of Madison open data about tax parcels, including geospatial information. Data loaded as raw geojson, not flattened.
           https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::tax-parcels-assessor-property-information/about
       - name: streets_geojson
         description: >
-          Raw data from city of Madison open data about streets and pavement, including geospatial information.
+          Raw data from city of Madison open data about streets and pavement, including geospatial information. Data loaded as raw geojson, not flattened.
           https://data-cityofmadison.opendata.arcgis.com/datasets/cityofmadison::street-centerlines-and-pavement-data/about
       - name: alder_districts_geojson
         description: >

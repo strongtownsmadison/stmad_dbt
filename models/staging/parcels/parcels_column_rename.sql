@@ -151,4 +151,4 @@ select
     geom as geom_4326,
     date_part('year',load_dttm) as parcel_year,
     load_dttm
-from {{ source('city_of_madison','parcels_geojson') }}
+from {{ source('city_of_madison','parcels_geojson_legacy') }}
