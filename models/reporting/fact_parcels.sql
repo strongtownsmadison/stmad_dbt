@@ -1,7 +1,9 @@
 {{
     config(
         tags=['parcels'],
-        index={'columns':['parcel_id','parcel_year'],'unique': True}
+        index={'columns':['parcel_id','parcel_year'],'unique': True},
+        materialized='incremental',
+        unique_key=['parcel_id','parcel_year']
     )
 }}
 
@@ -40,5 +42,6 @@ left outer join {{ ref('parcels_join_alder_districts') }} alder_districts
     on parcels.parcel_id = alder_districts.parcel_id
     and parcels.parcel_year = alder_districts.parcel_year
     and alder_districts.intersect_rank = 1
-
-
+{% if is_incremental() %}
+where parcels.load_dttm > (select max(load_dttm) from {{ this }})
+{% endif %}

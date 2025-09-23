@@ -78,6 +78,8 @@ select
     total_taxes,
     lot_size,
     shape_area,
-    total_dwelling_units
+    total_dwelling_units,
+
+    load_dttm
 
 from agg_cte
