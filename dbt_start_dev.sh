@@ -5,6 +5,7 @@ echo "✅ Virtual environment activated"
 export DBT_DEFER=""
 export DBT_STATE=""
 #Prep prod's current state for defer
+dbt deps
 dbt compile --target prod
 mkdir -p state
 cp target/manifest.json state/

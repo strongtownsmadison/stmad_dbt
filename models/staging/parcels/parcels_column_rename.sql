@@ -5,7 +5,6 @@
 }}
 
 select 
-    ogc_fid as ogc_fid,
     objectid as obj_id,
     parcel as parcel_id,
     xrefparcel as x_ref_parcel,

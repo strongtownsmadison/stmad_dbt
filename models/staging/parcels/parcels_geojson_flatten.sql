@@ -4,6 +4,12 @@
     )
 }}
 
+with current_and_history as (
+    select * from {{ source('city_of_madison','parcels_geojson') }}
+    --union all
+    --select * from {{ source('city_of_madison','parcels_geojson_history') }}
+)
+
 select 
     (feature_data -> 'properties' ->> 'OBJECTID')::numeric as obj_id,
     feature_data -> 'properties' ->> 'Parcel' as parcel_id,
@@ -150,4 +156,5 @@ select
     st_geomfromgeojson(feature_data ->> 'geometry') as geom_4326,
     date_part('year', load_dttm) as parcel_year,
     load_dttm
-from {{ source('city_of_madison','parcels_geojson') }}
+from current_and_history
+where feature_data is not null
